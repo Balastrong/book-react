@@ -1,0 +1,67 @@
+@use '../variables' as vars;
+
+.bkr-book-card {
+  margin: 0.7em;
+  padding: 0.1em 0.7em;
+  border-radius: vars.$border-radius;
+  color: vars.$secondary-text-color;
+  background-color: vars.$secondary-background-color;
+  border-bottom-style: groove;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .book-card-content {
+    text-align: center;
+    margin: 0.7em 0;
+    font-size: 0.8em;
+
+    .book-card-title {
+      font-size: 1.4em;
+      margin-bottom: 0.5em;
+    }
+
+    .book-card-author {
+      margin-bottom: 0.5em;
+    }
+
+    .book-card-description {
+      font-style: italic;
+    }
+  }
+
+  .book-card-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.7em 0;
+
+    .book-card-buttons {
+      display: flex;
+      width: 100%;
+      gap: 1em;
+
+      .book-card-reviews-button {
+        flex: 3;
+      }
+
+      .book-card-favourite-button {
+        flex: 1;
+      }
+    }
+  }
+
+  .book-card-top-ranks {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 0.85em;
+    margin: 0.7em 0;
+  }
+
+  .dialog-headline {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.7em;
+  }
+}

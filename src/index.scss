@@ -1,0 +1,138 @@
+@use './variables' as vars;
+
+html,
+body {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  color: vars.$primary-text-color;
+  background-color: vars.$primary-background-color;
+  font-size: 1.3em;
+  overflow-x: hidden;
+}
+
+button {
+  transition: all 0.5s ease, transform 0s;
+  color: vars.$secondary-text-color;
+  background-color: vars.$control-background-color;
+
+  &:hover,
+  &.active {
+    color: vars.$primary-text-color;
+    background-color: #00000020;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(2px);
+  }
+
+  &:disabled,
+  &[disabled] {
+    background-color: #cccccc;
+    color: #666666;
+  }
+}
+
+input,
+button {
+  padding: 1em;
+  border-radius: vars.$border-radius;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+.validation-error {
+  transition: background-color 0.5s ease;
+  background-color: #ffc8c8;
+}
+
+label {
+  margin-bottom: 0.3em;
+}
+
+.tooltip-container {
+  text-align: center;
+  z-index: 100;
+  position: fixed;
+  padding: 6px 12px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  line-height: initial;
+  color: white;
+  width: auto;
+  background: #111111ee;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translate(-50%, -30%);
+  animation: tooltip-slide 0.18s ease-out 0.5s;
+  animation-fill-mode: forwards;
+  pointer-events: none;
+}
+
+@keyframes tooltip-slide {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -30%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.books-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.7em -0.7em;
+  position: relative;
+  padding-bottom: 2em;
+
+  > .books-container-item {
+    flex-basis: 33.33%;
+
+    @media screen and (max-width: vars.$max-width-media) {
+      flex-basis: 100%;
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 0.7em;
+}
+
+::-webkit-scrollbar-track {
+  background: #fffc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888c;
+
+  &:hover {
+    background: #555c;
+  }
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.header {
+  text-align: center;
+}
