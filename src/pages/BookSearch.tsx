@@ -16,36 +16,56 @@ const BookSearch = () => {
       description: "Description 2",
     },
   ] as Book[]);
+  const [title, setTitle] = useState<string>("");
+  const [author, setAuthor] = useState<string>("");
+  const [isbn, setIsbn] = useState<string>("");
 
   const search = () => {
     // search books
+    console.log(title, author, isbn);
   };
 
   return (
     <>
-      <div className="search-form">
+      <form
+        className="search-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          search();
+        }}
+      >
         <div className="search-form-controls">
           <div className="form-field">
             <label>Title</label>
-            <input placeholder="Title" />
+            <input
+              placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </div>
           <div className="form-field">
             <label>Author</label>
-            <input placeholder="Author" />
+            <input
+              placeholder="Author"
+              value={author}
+              onChange={(e) => setAuthor(e.target.value)}
+            />
           </div>
           <div className="form-field">
             <label>ISBN</label>
-            <input placeholder="ISBN" />
+            <input
+              placeholder="ISBN"
+              value={isbn}
+              onChange={(e) => setIsbn(e.target.value)}
+            />
           </div>
           <div className="form-field">
             <div className="full-width">
-              <button className="full-width" onClick={search}>
-                Search
-              </button>
+              <button className="full-width">Search</button>
             </div>
           </div>
         </div>
-      </div>
+      </form>
       <div className="books-container">
         {books.map((book, index) => (
           <div className="books-container-item" key={index}>
