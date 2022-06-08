@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BookCard from "../domain-components/BookCard";
 import { Book } from "../models/books/response/book";
+import "./BookSearch.scss";
 
 const BookSearch = () => {
   const [books, setBooks] = useState<Book[]>([
@@ -16,12 +17,40 @@ const BookSearch = () => {
     },
   ] as Book[]);
 
+  const search = () => {
+    // search books
+  };
+
   return (
     <>
-      <form></form>
+      <div className="search-form">
+        <div className="search-form-controls">
+          <div className="form-field">
+            <label>Title</label>
+            <input placeholder="Title" />
+          </div>
+          <div className="form-field">
+            <label>Author</label>
+            <input placeholder="Author" />
+          </div>
+          <div className="form-field">
+            <label>ISBN</label>
+            <input placeholder="ISBN" />
+          </div>
+          <div className="form-field">
+            <div className="full-width">
+              <button className="full-width" onClick={search}>
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="books-container">
         {books.map((book, index) => (
-          <BookCard book={book} key={index} />
+          <div className="books-container-item" key={index}>
+            <BookCard book={book} />
+          </div>
         ))}
       </div>
     </>

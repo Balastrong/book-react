@@ -18,7 +18,7 @@ const Tabs = (props: ITabsProps) => {
       <div className="tabs-labels">
         {props.tabs.map((tab, index) => (
           <button
-            className="tabs-label"
+            className={`tabs-label ${activeTab === index ? "active" : ""}`}
             key={index}
             onClick={() => setActiveTab(index)}
           >

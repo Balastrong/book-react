@@ -4,12 +4,17 @@ import BookSearch from "./pages/BookSearch";
 
 function App() {
   const tabs: ITab[] = [
-    { label: "Left", content: <BookSearch /> },
-    { label: "Right", content: <BookFavourite /> },
+    { label: "Research", content: <BookSearch /> },
+    { label: "Favourites", content: <BookFavourite /> },
   ];
   return (
     <div className="main-container">
-      <Tabs tabs={tabs} />
+      <div className="header">
+        <h1>Book Research 📖</h1>
+      </div>
+      <div className="content">
+        <Tabs tabs={tabs} />
+      </div>
     </div>
   );
 }
