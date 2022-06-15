@@ -1,7 +1,10 @@
 import { BookRequestModel } from "../models/books/request/bookRequestModel";
 import { Book } from "../models/books/response/book";
 import { BookApiResponse } from "../models/books/response/bookApiResponse";
-import { flatObjectToQueryString } from "../utils/dataUtils";
+import {
+  flatObjectToQueryString,
+  objectKeysToCamelCase,
+} from "../utils/dataUtils";
 
 const baseUrl: string = "https://api.nytimes.com/svc/books/v3";
 
@@ -23,8 +26,10 @@ export const getBooks = async (
     )}`
   )
     .then((res) => res.json())
-    .then((res: BookApiResponse<Book>) => ({
-      ...res,
-      results: res.results.map((book) => new Book(book)),
-    }));
+    .then((res: BookApiResponse<Book>) =>
+      objectKeysToCamelCase({
+        ...res,
+        results: res.results.map((book) => new Book(book)),
+      })
+    );
 };

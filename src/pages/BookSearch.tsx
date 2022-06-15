@@ -2,29 +2,18 @@ import { useState } from "react";
 import BookCard from "../domain-components/BookCard";
 import { Book } from "../models/books/response/book";
 import { getBooks } from "../services/books.service";
+import { removeEmptyFields } from "../utils/dataUtils";
 import "./BookSearch.scss";
 
 const BookSearch = () => {
-  const [books, setBooks] = useState<Book[]>([
-    {
-      title: "Book 1",
-      author: "Author 1",
-      description: "Description 1",
-    },
-    {
-      title: "Book 2",
-      author: "Author 2",
-      description: "Description 2",
-    },
-  ] as Book[]);
+  const [books, setBooks] = useState<Book[] | undefined>(undefined);
   const [title, setTitle] = useState<string>("");
   const [author, setAuthor] = useState<string>("");
   const [isbn, setIsbn] = useState<string>("");
 
   const search = async () => {
     // search books
-    console.log(title, author, isbn);
-    getBooks({title, author, isbn}).then((res) => {
+    getBooks(removeEmptyFields({ title, author, isbn })).then((res) => {
       setBooks(res.results);
     });
   };
@@ -71,7 +60,7 @@ const BookSearch = () => {
         </div>
       </form>
       <div className="books-container">
-        {books.map((book, index) => (
+        {books?.map((book, index) => (
           <div className="books-container-item" key={index}>
             <BookCard book={book} />
           </div>

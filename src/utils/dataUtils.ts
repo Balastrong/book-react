@@ -22,7 +22,7 @@ export function objectKeysToCamelCase<T>(obj: T): T | any {
  */
 export function toCamel(s: string): string {
   return s.replace(/([-_][a-z])/gi, ($1) => {
-    return $1.toUpperCase().replace('-', '').replace('_', '');
+    return $1.toUpperCase().replace("-", "").replace("_", "");
   });
 }
 
@@ -30,7 +30,7 @@ export function toCamel(s: string): string {
  * Restituisce true se il valore in input è un oggetto
  */
 export function isObject(obj: any): boolean {
-  return obj !== null && typeof obj === 'object' && !Array.isArray(obj);
+  return obj !== null && typeof obj === "object" && !Array.isArray(obj);
 }
 
 /**
@@ -39,14 +39,16 @@ export function isObject(obj: any): boolean {
 export function flatObjectToQueryString<T>(obj: T): string {
   return isObject(obj)
     ? Object.keys(obj)
-        .map((key) => `${key}=${encodeURIComponent('' + obj[key as keyof T])}`)
-        .join('&')
-    : '';
+        .map((key) => `${key}=${encodeURIComponent("" + obj[key as keyof T])}`)
+        .join("&")
+    : "";
 }
 
 /**
  * Restituisce un nuovo oggetto rimuovendo tutti i campi con valore falsey
  */
 export function removeEmptyFields<T>(obj: T): T {
-  return <T>Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null && v !== ''));
+  return Object.fromEntries(
+    Object.entries(obj).filter(([_, v]) => v != null && v !== "")
+  ) as T;
 }
