@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BookCard from "../domain-components/BookCard";
 import { Book } from "../models/books/response/book";
+import { getBooks } from "../services/books.service";
 import "./BookSearch.scss";
 
 const BookSearch = () => {
@@ -20,9 +21,12 @@ const BookSearch = () => {
   const [author, setAuthor] = useState<string>("");
   const [isbn, setIsbn] = useState<string>("");
 
-  const search = () => {
+  const search = async () => {
     // search books
     console.log(title, author, isbn);
+    getBooks({title, author, isbn}).then((res) => {
+      setBooks(res.results);
+    });
   };
 
   return (
