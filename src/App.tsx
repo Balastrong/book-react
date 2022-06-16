@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="main-container">
       <div className="header">
-        <h1>Book Research 📖</h1>
+        <h1>Book React 📖</h1>
       </div>
       <div className="content">
         <Tabs tabs={tabs} />

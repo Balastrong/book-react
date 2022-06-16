@@ -1,6 +1,8 @@
 import { BookRequestModel } from "../models/books/request/bookRequestModel";
+import { ReviewRequestModel } from "../models/books/request/reviewRequestModel";
 import { Book } from "../models/books/response/book";
 import { BookApiResponse } from "../models/books/response/bookApiResponse";
+import { Review } from "../models/books/response/review";
 import {
   flatObjectToQueryString,
   objectKeysToCamelCase,
@@ -32,4 +34,17 @@ export const getBooks = async (
         results: res.results.map((book) => new Book(book)),
       })
     );
+};
+
+export const getReviews = async (
+  requestModel: ReviewRequestModel
+): Promise<BookApiResponse<Review>> => {
+  const authenticatedRequest = {
+    ...requestModel,
+    "api-key": await getApiKey(),
+  };
+
+  return await fetch(
+    `${baseUrl}/reviews.json?${flatObjectToQueryString(authenticatedRequest)}`
+  ).then((res) => res.json());
 };
