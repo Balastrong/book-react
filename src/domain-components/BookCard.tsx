@@ -4,6 +4,7 @@ import { Book } from "../models/books/response/book";
 import { Review } from "../models/books/response/review";
 import { getReviews } from "../services/books.service";
 import "./BookCard.scss";
+import ReviewCard from "./ReviewCard";
 
 interface IProps {
   book: Book;
@@ -65,7 +66,8 @@ const BookCard = ({ book }: IProps) => {
           setIsReviewDialogVisible(false);
         }}
       >
-        Content
+        <div className="dialog-headline">{book.title}</div>
+        <ReviewCard reviews={reviews ?? []} />
       </Dialog>
     </div>
   );
