@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Dialog from "../generic-components/Dialog";
 import { Book } from "../models/books/response/book";
 import { Review } from "../models/books/response/review";
 import { getReviews } from "../services/books.service";
@@ -58,7 +59,14 @@ const BookCard = ({ book }: IProps) => {
         </div>
       </div>
 
-      {isReviewDialogVisible && <></>}
+      <Dialog
+        isVisible={isReviewDialogVisible}
+        onClose={() => {
+          setIsReviewDialogVisible(false);
+        }}
+      >
+        Content
+      </Dialog>
     </div>
   );
 };
